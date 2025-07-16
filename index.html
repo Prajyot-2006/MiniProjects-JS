@@ -1,14 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>My Projects</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 30px;
+      background: linear-gradient(45deg, #00fff0, #00b3ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    li a {
+      text-decoration: none;
+      background-color: #00b3ff;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.3s ease;
+      display: inline-block;
+    }
+
+    li a:hover {
+      transform: scale(1.1);
+      background-color: #007acc;
+    }
+  </style>
 </head>
 <body>
   <h1>Welcome to My Projects</h1>
   <ul>
     <li><a href="calculator/calculator.html">Calculator</a></li>
     <li><a href="todolist/01-todo-practice3.html">To-do List</a></li>
-    <li><a href="Rock paper scissor/01-06-dom-projectsNew.html">Rock Paper Scissors</a></li>
+    <li><a href="Rock%20paper%20scissor/01-06-dom-projectsNew.html">Rock Paper Scissors</a></li>
   </ul>
 </body>
 </html>
