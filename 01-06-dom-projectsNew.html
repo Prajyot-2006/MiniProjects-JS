@@ -1,0 +1,56 @@
+<!--goto supersimple.dev/projects/dom-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="01-06-dom-projectsNew(CSS).css"  >
+  </head>
+  <body>
+
+    <p class="para1">Rock Paper Scissors</p>
+
+    <button class="img-button" 
+    onclick="
+      playGame('rock');
+    "><img class="sameimg" src="rock-emoji.png"></button>
+
+    <button class="img-button"
+    onclick="
+      playGame('paper');
+    "><img class="sameimg" src="paper-emoji.png"></button>
+
+    <button class="img-button"
+    onclick="
+      playGame('scissors');
+    "><img class="sameimg" src="scissors-emoji.png"></button>
+
+
+
+    <p class="js-result" >
+    </p>
+
+    <p class="js-move">
+    </p>
+
+    <p class="js-score"> 
+    </p>
+
+    <button class="resetbutton"
+    onclick="
+    score.win = 0;
+    score.losses = 0;
+    score.Ties = 0;
+    localStorage.removeItem('score');
+    updateScoreElement();
+    ">
+        Reset Score
+    </button>
+
+<!--
+1. score obj la JSON madhe convert kela using stringify 
+2. json obj la JS obj madhe convert kela using parse
+-->
+    <script src="01-06-dom-projectsNew(JS).js" ></script>  
+  </body>
+</html>

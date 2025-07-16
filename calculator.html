@@ -1,0 +1,254 @@
+<!--
+10i. We’ll style the calculator project using CSS.
+Make a copy of exercise 9j.
+
+In your browser, go to:
+supersimple.dev/projects/calculator-final
+This is the final design for the project.
+Using CSS, style the calculator project to look like the final design on the right.
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Calculator
+        </title>
+
+        <style>
+            button {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                border: none;
+                background-color: #333;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                transition: background 8.9s;
+            }
+
+            body{
+                background-color: black;
+            } 
+
+            .operator{
+                background-color: orange;
+            }
+
+            .js-answer{
+                font-size: 50px;
+                color: white;
+                font-family: Arial;
+
+            }
+
+            .js-process{
+                font-size: 50px;
+                color: white;
+                font-family: Arial;
+            }
+
+
+        </style>
+    </head>
+    <body>
+
+        <p class="js-answer">
+        </p>
+
+        <p class="js-process">
+        </p>
+
+        <button
+        onclick="
+        updateCalc('1');
+        ">
+            1
+        </button>
+
+
+        <button
+        onclick="
+        updateCalc('2');
+        ">
+            2
+        </button>
+
+
+        <button
+        onclick="
+        updateCalc('3');
+        ">
+            3
+        </button>
+
+
+        <button class="operator"
+        onclick="
+        updateCalc(' + ');
+        ">
+            +
+        </button>
+
+        <p> 
+            <button
+            onclick="
+            updateCalc('4');
+            ">
+                4
+            </button>
+
+            <button
+            onclick="
+            updateCalc('5');
+            ">
+                5
+            </button>
+
+            <button
+            onclick="
+            updateCalc('6');
+            ">
+                6
+            </button>
+
+            <button  class="operator"
+            onclick="
+            updateCalc(' - ');
+            ">
+                -
+            </button>
+        </p>
+
+        <p>
+            <button
+            onclick="
+            updateCalc('7');
+            ">
+                7
+            </button>
+
+            <button
+            onclick="
+            updateCalc('8');
+            ">
+                8
+            </button>
+            
+            <button
+            onclick="
+            updateCalc('9');
+            ">
+                9
+            </button>
+
+            <button  class="operator"
+            onclick="
+            updateCalc(' * ');
+            ">
+                *
+            </button>
+        </p>
+
+        <p>
+            <button
+            onclick="
+            updateCalc('0');
+            ">
+                0
+            </button>
+
+            <button  
+            onclick="
+            updateCalc(' .');
+            ">
+                .
+            </button>
+
+            <button
+            onclick="
+            converting();
+            ">
+                =
+            </button>
+
+            <button  class="operator"
+            onclick="
+            updateCalc(' / ');
+            ">
+                /
+            </button>
+            
+        </p>
+        
+
+
+        <button
+        onclick="
+        reset();
+        ">
+            Clear
+        </button>
+
+        <p class="js-answer">
+        </p>
+
+    <!-- <p class="js-previousCalc">
+        </p>
+    -->
+
+
+    </body>
+
+    <script>
+        
+        // Step 1: Get the previous value from localStorage
+        let store = localStorage.getItem('calculation') || '';  // localStorage.getItem('calculation') tries to get previously saved value. If nothing is saved (like first time), it returns null , null || '' becomes '' (empty string).
+// At first, store will be an empty string ('') if there's nothing saved yet. ✅
+
+        let emptystring = '';
+        document.querySelector('.js-process').innerHTML = store;
+
+
+        // Step 2: Show it in the console when the page loads
+        document.querySelector('.js-previousCalc').innerHTML = `Previous Calculation: ${store}`;
+        console.log('Previous Calculation:', store);
+        document.querySelector('.js-process').innerHTML = store;
+
+
+        // Step 3: Update value when button is clicked
+        function updateCalc(store1){
+            store = `${store}${store1}`;
+            document.querySelector('.js-process').innerHTML = store
+            // console.log(store);
+            localStorage.setItem('calculation', store);
+        }
+
+        // Step 4: Evaluate the calculation
+        function converting(){
+            store = eval(store);  // converts the string into math or number type
+            document.querySelector('.js-process').innerHTML = emptystring;
+            document.querySelector('.js-answer').innerHTML = `${store}`;
+
+            console.log(store);
+            localStorage.setItem('calculation', store);
+        }
+
+        // Step 5: Clear everything
+        function reset(){
+            store = "";
+             document.querySelector('.js-process').innerHTML = emptystring;
+            document.querySelector('.js-answer').innerHTML = emptystring;
+            
+
+            console.log('Cleared');
+            localStorage.setItem('calculation', store);
+            
+        }
+
+        
+    </script>
+</html>
+
+

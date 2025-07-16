@@ -1,0 +1,158 @@
+<!--goto supersimple.dev/projects/arrays we are building todo list practice 3 -->
+
+<!--We learned about arrays in this file 
+an arrays is a another type of values , it represents a list of values-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo List</title>
+    <style>
+
+        body{
+        font-family: Arial;
+        }
+
+        .todo-grid,.todo-input-grid{
+            display: grid;
+            grid-template-columns: 200px 150px 100px;
+            column-gap: 10px;
+            row-gap: 10px;
+            align-items: center;
+        }
+        
+
+        .todo-input-grid{
+            margin-bottom: 10px;
+            align-items: stretch;
+        }
+
+        .name-input,.due-date-input {
+            font-size: 15px;
+            padding: 6px;
+        }
+        
+
+        .add-todo-button{
+            background-color: green;
+            color: white;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .delete-todo-button{
+            background-color: darkred;
+            color: white;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+    </style>
+  </head>
+  <body>
+    <p>Todo List Practice 3</p>
+
+    <div class="todo-input-grid">
+      <input placeholder="Todo name"
+        class="js-name-input name-input">
+      <input type="date"
+        class="js-due-date-input due-date-input">
+      <button onclick="
+        addTodo();
+      " class="add-todo-button">Add</button>
+    </div>
+
+    <div class="js-todo-list todo-grid"></div>
+
+    <script>
+
+        const todoList = [{
+        name: 'make dinner',
+        dueDate: '2022-12-22'
+        }, 
+        {
+        name: 'wash dishes',
+        dueDate: '2022-12-22'
+        }
+    ];
+
+        renderTodoList();
+
+        function renderTodoList(){
+        let todoListHTML = '';
+
+        for(let i=0;i<todoList.length;i++){
+            const todoObject = todoList[i];
+            const name = todoObject.name;
+            const dueDate = todoObject.dueDate;
+            //const { name, dueDate } = todoObject;
+
+            const html = `
+            <div>${name}</div>
+            <div>${dueDate}</div>
+            <button onclick="                              
+                todoList.splice(${i}, 1);
+                renderTodoList();
+            " class="delete-todo-button">Delete</button>        
+            `;  // 🚩 Situation:You're in first iteration: i = 0 ,You click Delete on the first item That runs:✅So what happens to the loop?This is important:When the Delete button is clicked, it does not wait for the for loop to finish.Instead,it completely restarts the function renderTodoList() from the beginning.
+
+            todoListHTML += html;
+        }
+
+        document.querySelector('.js-todo-list')
+            .innerHTML = todoListHTML;
+        }
+
+        function addTodo() {
+        const inputElement = document.querySelector('.js-name-input');
+        const name = inputElement.value;
+
+        const dateInputElement = document.querySelector('.js-due-date-input');
+        const dueDate = dateInputElement.value;
+
+        todoList.push({
+            name: name,
+            dueDate: dueDate,
+            //name,
+            //dueDate
+        });
+
+        inputElement.value = '';
+
+        renderTodoList();
+        }
+    </script>
+  </body>
+</html>
+
+
+
+<!--
+confusion about delete button : for eg you delete 1st value of the array 'make dinner'
+
+🔄 Here’s the step-by-step:
+renderTodoList() runs
+
+i = 0, you see make dinner
+
+You click the Delete button
+
+That runs:
+
+todoList.splice(0, 1) → removes make dinner
+
+renderTodoList() → the function starts again from the top
+
+The old for loop is gone — it stops
+
+A new for loop begins inside the new call to renderTodoList()
+
+Now it starts again from i = 0, but with a shorter list
+
+
+the make dinner which was  i =0 at first is now gone , that means now the first value of array todoList is wash dishes ?
+✅ Exactly! You're 100% correct!
+-->
