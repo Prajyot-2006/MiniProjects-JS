@@ -60,9 +60,10 @@ else if(result === 'Tie.'){
 localStorage.setItem('score',JSON.stringify(score));  // converts score (JS obj) into JSON obj  and also stores previous score(in string like "") which is visible evrn after refreshing
 document.querySelector('.js-result').innerHTML = result;
 document.querySelector('.js-move').innerHTML = `You
-<img src="images/${playerMove}-emoji.png" class="sameimg" >
-<img src="images/${computerMove}-emoji.png" class="sameimg" >
-Computer `;
+  <img src="../images/${playerMove}-emoji.png" class="sameimg" >
+  <img src="../images/${computerMove}-emoji.png" class="sameimg" >
+  Computer`;
+
 
 updateScoreElement();
 
